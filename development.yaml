@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  forumDatabase:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+  forumDBMigration:
+    image: forumdbmigration
+    depends_on:
+      - forumDatabase
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+  authenticationDatabase:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3307:3306
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+  user:
+    image: usermigration
+    depends_on:
+      - authenticationDatabase
+      - redis
+    ports:
+      - 5000:5000
+  admin:
+    image: adminmigration
+    ports:
+      - 5001:5001
+  deamon:
+    image: daemonmigration
+    depends_on:
+      - authenticationDatabase
+      - redis
