@@ -36,11 +36,13 @@ def callback(message):
 
         startDate = dateutil.parser.isoparse(IZBOR.datumVremePocetka)
         endDate = dateutil.parser.isoparse(IZBOR.datumVremeKraja)
-        # print(startDate)
+        print(startDate)
+        print(endDate)
+        print(dateNow)
 
         if not startDate < dateNow and not endDate > dateNow:
             print("nisu aktivni")
-            return
+            continue
         else:
             # print(splitValue[0])
 
