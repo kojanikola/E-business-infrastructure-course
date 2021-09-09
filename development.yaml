@@ -21,7 +21,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - 3307:3306
-  redis:
+  stackF_redis:
     image: redis
     ports:
       - 6379:6379
@@ -29,7 +29,7 @@ services:
     image: usermigration
     depends_on:
       - authenticationDatabase
-      - redis
+      - stackF_redis
     ports:
       - 5000:5000
   admin:
@@ -40,4 +40,4 @@ services:
     image: daemonmigration
     depends_on:
       - authenticationDatabase
-      - redis
+      - stackF_redis

@@ -104,7 +104,7 @@ if __name__ == "__main__":
 
     with application.app_context():
         while True:
-            with Redis(host='redis', port=6379) as r:
+            with Redis(host='stackF_redis', port=6379) as r:
                 _, message = r.blpop(Configuration.REDIS_THREADS_LIST)
                 message = message.decode("utf-8")
                 callback(message)

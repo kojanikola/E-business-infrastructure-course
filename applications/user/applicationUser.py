@@ -67,7 +67,7 @@ def getElections():
         if  int(row[1]) < 0:
             return make_response(jsonify(message="Incorrect poll number on line "+str(i)+"."), 400)
 
-        with Redis(host='redis', port=6379) as r:
+        with Redis(host='stackF_redis', port=6379) as r:
             r.rpush(Configuration.REDIS_THREADS_LIST, row[0] + "," + row[1] + "," + jmbg)
         i=i+1
 

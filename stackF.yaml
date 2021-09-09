@@ -33,10 +33,12 @@ services:
     image: redis
     ports:
       - 6379:6379
+    networks:
+      - mynet
   user:
     image: usermigration
     ports:
-      - 5005:5005
+      - 5000:5000
     networks:
       - mynet
   admin:
